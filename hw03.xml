@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<project name="hw03" basedir="." default="run">
+    <property environment="env"/>
+    <echo message="JUNIT: ${env.JUNIT}"/>
+    <echo message="ANT_HOME: ${env.ANT_HOME}"/>
+
+    <!-- Sources and binaries-->
+    <property name="src" location="src"/>
+    <property name="bin" location="bin"/>
+
+    <!-- Testing -->
+    <property name="test.src" location="test/src"/>
+    <property name="test.bin" location="test/bin"/>
+
+    <path id="classpath">
+        <pathelement location="bin"/>
+        <pathelement location="test/bin"/>
+        <!-- JUnit libraries-->
+        <fileset dir="${env.JUNIT}" includes="*junit*.jar" excludes="*vintage*.jar"/>
+        <fileset dir="${env.JUNIT}" includes="*opentest4j*.jar" />
+        <fileset dir="${env.JUNIT}" includes="*apiguardian*.jar"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${bin}" />
+        <mkdir dir="${test.bin}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
+            <classpath refid="classpath" />
+            <include name="edu/umb/cs680/hw03/*.java"/>
+        </javac>
+        <javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
+            <classpath refid="classpath" />
+            <include name="edu/umb/cs680/hw03/*.java"/>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <!-- Unit testing-->
+        <junitlauncher printSummary="true">
+            <classpath refid="classpath"/>
+            <testclasses outputdir="test">
+                <fileset dir="${test.bin}">
+                    <include name="edu/umb/cs680/hw03/*Test.class"/>
+                </fileset>
+                <listener type="legacy-plain" sendsysout="true"/>
+            </testclasses>
+        </junitlauncher>
+        <!-- Run PrimeGenerator-->
+        <java classname="edu.umb.cs680.hw03.PrimeGenerator"
+              classpathref="classpath" fork="true"/>
+    </target>
+</project>
