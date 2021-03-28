@@ -2,6 +2,7 @@
 
 <project name="hw02" basedir="." default="run">
     <property environment="env"/>
+    <echo message="JUNIT: ${env.JUNIT}"/>
 
     <!-- Sources and binaries-->
     <property name="src" location="src"/>
@@ -30,11 +31,26 @@
             <classpath refid="classpath" />
             <include name="edu/umb/cs680/hw02/*.java"/>
         </javac>
+        <javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
+            <classpath refid="classpath" />
+            <include name="edu/umb/cs680/hw02/*.java"/>
+        </javac>
     </target>
 
     <target name="run" depends="compile">
-        <java classname="edu.umb.cs680.hw02.*"
-              classpathref="classpath" fork="true"/>
+        <!-- Unit testing-->
+        <junitlauncher printSummary="true">
+            <classpath refid="classpath"/>
+            <testclasses outputdir="test">
+                <fileset dir="${test.bin}">
+                    <include name="edu/umb/cs680/hw02/*Test.class"/>
+                </fileset>
+                <listener type="legacy-plain" sendsysout="true"/>
+            </testclasses>
+        </junitlauncher>
+        <!-- Run Calculator-->
+        <!--java classname="edu.umb.cs680.hw02.Calculator"
+              classpathref="classpath" fork="true"/-->
     </target>
 
 </project>
