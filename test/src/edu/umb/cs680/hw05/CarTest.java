@@ -2,14 +2,15 @@ package edu.umb.cs680.hw05;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import java.lang.Integer;
 
 public class CarTest{
 
     private String[] carToStringArray(Car thisCar){
         String make = thisCar.getMake();
         String model = thisCar.getModel();
-        int year = thisCar.getYear();
-        String yearString = "" + year;
+        Integer year = thisCar.getYear();
+        String yearString = year.toString();
         String[] thisCarArray = {make, model, yearString};
         return thisCarArray;
 
