@@ -4,3 +4,5 @@
 /bin/*
 cs680hw.iml
 *.class
+/test/TEST-*
+.idea/*

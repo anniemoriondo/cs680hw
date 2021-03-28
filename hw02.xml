@@ -3,6 +3,7 @@
 <project name="hw02" basedir="." default="run">
     <property environment="env"/>
     <echo message="JUNIT: ${env.JUNIT}"/>
+    <echo message="ANT_HOME: ${env.ANT_HOME}"/>
 
     <!-- Sources and binaries-->
     <property name="src" location="src"/>
@@ -49,8 +50,7 @@
             </testclasses>
         </junitlauncher>
         <!-- Run Calculator-->
-        <!--java classname="edu.umb.cs680.hw02.Calculator"
-              classpathref="classpath" fork="true"/-->
+        <java classname="edu.umb.cs680.hw02.Calculator"
+              classpathref="classpath" fork="true"/>
     </target>
-
 </project>
