@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+
 <project name="hw04" basedir="." default="run">
     <property environment="env"/>
     <echo message="JUNIT: ${env.JUNIT}"/>
@@ -9,50 +10,51 @@
     <property name="bin" location="bin"/>
 
     <!-- Unit tests -->
-    <property name="test" location="test/"/>
+    <property name="test" location="test"/>
     <property name="test.src" location="test/src"/>
     <property name="test.bin" location="test/bin"/>
 
     <!-- Classpath -->
     <path id="classpath">
-        <pathelement location="bin"/>
-        <pathelement location="test/bin"/>
-        <!-- JUnit libraries -->
+        <pathelement location="${bin}"/>
+        <pathelement location="${test.bin}"/>
+        <!-- JUnit libraries-->
         <fileset dir="${env.JUNIT}" includes="*junit*.jar" excludes="*vintage*.jar"/>
         <fileset dir="${env.JUNIT}" includes="*opentest4j*.jar"/>
         <fileset dir="${env.JUNIT}" includes="*apiguardian*.jar"/>
     </path>
 
+    <!-- Prepare the binary directories -->
     <target name="init">
         <mkdir dir="${bin}"/>
         <mkdir dir="${test.bin}"/>
     </target>
 
+    <!-- Compile -->
     <target name="compile" depends="init">
-        <!-- Compile all classes and test classes -->
+        <!-- Classes under test -->
         <javac srcdir="${src}" destdir="${bin}" includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw04/*.java"/>
+            <include name="edu/umb/cs680/hw05/*.java"/>
         </javac>
-        <javac srcdir="${test.src}" destdir="${test.bin}" includeantruntime="no">
+        <!-- Test classes -->
+        <javac srcdir="${test.src}" destdir="${test.bin}"
+               includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw04/*.java"/>
+            <include name="edu/umb/cs680/hw05/*.java"/>
         </javac>
     </target>
 
+    <!-- Run unit tests-->
     <target name="run" depends="compile">
-        <!--- Run unit tests -->
-        <junitlauncher printsummary="true">
-            <classpath refid="classpath" />
+        <junitlauncher printsummary="True">
+            <classpath refid="classpath"/>
             <testclasses outputdir="${test}">
                 <fileset dir="${test.bin}">
-                    <include name="edu/umb/cs680/hw04/*Test.class"/>
+                    <include name="edu/umb/cs680/hw05/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
-        <!-- Run Student -->
-        <java classname="edu.umb.cs680.hw04.Student"
-              classpathref="classpath" fork="true"/>
     </target>
 </project>
