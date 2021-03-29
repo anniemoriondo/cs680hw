@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="hw05" basedir="." default="run">
+<project name="hw06" basedir="." default="run">
     <property environment="env"/>
     <echo message="JUNIT: ${env.JUNIT}"/>
     <echo message="ANT_HOME: ${env.ANT_HOME}"/>
@@ -35,26 +35,28 @@
         <!-- Classes under test -->
         <javac srcdir="${src}" destdir="${bin}" includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw05/*.java"/>
+            <include name="edu/umb/cs680/hw06/*.java"/>
         </javac>
         <!-- Test classes -->
         <javac srcdir="${test.src}" destdir="${test.bin}"
                includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw05/*.java"/>
+            <include name="edu/umb/cs680/hw06/*.java"/>
         </javac>
     </target>
 
     <!-- Run unit tests-->
     <target name="run" depends="compile">
-        <junitlauncher printsummary="True">
+        <!--junitlauncher printsummary="True">
             <classpath refid="classpath"/>
             <testclasses outputdir="${test}">
                 <fileset dir="${test.bin}">
-                    <include name="edu/umb/cs680/hw05/*Test.class"/>
+                    <include name="edu/umb/cs680/hw06/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
-        </junitlauncher>
+        </junitlauncher-->
+        <java classname="edu/umb/cs680/hw06/DVDPlayer"
+              classpathref="classpath" fork="true"/>
     </target>
 </project>

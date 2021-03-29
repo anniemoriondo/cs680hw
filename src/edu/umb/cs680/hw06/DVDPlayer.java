@@ -1,42 +1,53 @@
 package edu.umb.cs680.hw06;
 
+import java.lang.System;
+
 public class DVDPlayer {
-    private static State state;
-    private DVDPlayer(){}
+    private State state;
+    private DVDPlayer(State state){
+        this.state = state;
+    }
     private static DVDPlayer instance = null;
 
     public static DVDPlayer getInstance(){
         if(instance == null){
-            instance = new DVDPlayer();
-            state = DrawerClosedNotPlaying.getInstance();
+            instance = new DVDPlayer(DrawerClosedNotPlaying.getInstance());
         }
         return instance;
     }
 
-    public static void changeState(State newState){
-        state = newState;
+    public void changeState(State newState){
+        this.state = newState;
+    }
+
+    public State getState(){
+        return this.state;
     }
 
     // Button operations on the DVD player
-    public static void openCloseButtonPushed(){
-        state.openCloseButtonPushed();
+    public void openCloseButtonPushed(){this.state.openCloseButtonPushed(); }
+
+    public void playButtonPushed(){
+        this.state.playButtonPushed();
     }
 
-    public static void playButtonPushed(){
-        state.playButtonPushed();
-    }
-
-    public static void stopButtonPushed(){
-        state.stopButtonPushed();
+    public void stopButtonPushed(){
+        this.state.stopButtonPushed();
     }
 
     // Basic functions of the DVD player
-    public static void open(){}
-    public static void close(){}
-    public static void play(){
-        // Would the error check go in this message?
+    public void open(){}
+    public void close(){}
+    public void play(){
+        // Would the error check go in this method?
     }
-    public static void stop(){}
+    public void stop(){}
+
+    public static void main(String[] args){
+        System.out.println(
+                getInstance().state == DrawerClosedNotPlaying.getInstance());
+
+    }
 
 
 
