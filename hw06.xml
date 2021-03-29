@@ -24,8 +24,12 @@
         <fileset dir="${env.JUNIT}" includes="*apiguardian*.jar"/>
     </path>
 
-    <!-- Prepare the binary directories -->
+    <!-- Start with all-new binaries -->
     <target name="init">
+        <delete>
+            <fileset dir="${bin}/edu/umb/cs680/hw06" includes="**/*"/>
+            <fileset dir="${test.bin}/edu/umb/cs680/hw06" includes="**/*"/>
+        </delete>
         <mkdir dir="${bin}"/>
         <mkdir dir="${test.bin}"/>
     </target>
@@ -47,7 +51,7 @@
 
     <!-- Run unit tests-->
     <target name="run" depends="compile">
-        <!--junitlauncher printsummary="True">
+        <junitlauncher printsummary="True">
             <classpath refid="classpath"/>
             <testclasses outputdir="${test}">
                 <fileset dir="${test.bin}">
@@ -55,7 +59,7 @@
                 </fileset>
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
-        </junitlauncher-->
+        </junitlauncher>
         <java classname="edu/umb/cs680/hw06/DVDPlayer"
               classpathref="classpath" fork="true"/>
     </target>

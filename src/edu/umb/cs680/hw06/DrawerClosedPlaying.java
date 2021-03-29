@@ -15,7 +15,7 @@ public class DrawerClosedPlaying implements State{
         DVDPlayer player = DVDPlayer.getInstance();
         player.stop();
         player.open();
-        player.changeState(DrawerClosedNotPlaying.getInstance());
+        player.changeState(DrawerOpen.getInstance());
     }
 
     @Override

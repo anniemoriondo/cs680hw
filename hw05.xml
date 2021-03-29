@@ -56,5 +56,7 @@
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
+        <java classname="edu/umb/cs680/hw05/Car"
+              classpathref="classpath" fork="true"/>
     </target>
 </project>

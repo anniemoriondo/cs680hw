@@ -1,5 +1,7 @@
 package edu.umb.cs680.hw05;
 
+import java.lang.System;
+
 public class Car {
     private String make, model;
     private int mileage, year;
@@ -32,5 +34,15 @@ public class Car {
 
     public float getPrice() {
         return this.price;
+    }
+
+    public static void main(String[] args){
+        Car myCar = new Car("Ford", "Fusion", 0, 2021, 40000);
+        System.out.println(myCar.getMake());
+        System.out.println(myCar.getModel());
+        System.out.println(myCar.getMileage());
+        System.out.println(myCar.getYear());
+        System.out.println(myCar.getPrice());
+
     }
 }
