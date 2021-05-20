@@ -20,7 +20,6 @@ public class DirectoryTest {
                 parentName,
                 String.valueOf(d.countChildren())
         };
-        System.out.println("Is this working?");
         return dirInfo;
     }
 
@@ -33,9 +32,43 @@ public class DirectoryTest {
     public void verifyDirectoryEqualityRoot(){
         String[] expected = {"true", "root", "0", "null", "2"};
         Directory actual = fs.getRootDirs().getFirst();
-        System.out.println(expected);
-        System.out.println(dirToStringArray(actual));
         assertArrayEquals(expected, dirToStringArray(actual));
 
+    }
+
+    @Test
+    public void verifyDirectoryEqualityApplications(){
+        String[] expected = {"true", "applications", "0", "root", "1"};
+        // Get the `applications` directory.
+        Directory actual = (Directory)
+                fs.getRootDirs().getFirst().getChildren().getFirst();
+        assertArrayEquals(expected, dirToStringArray(actual));
+    }
+
+    @Test
+    public void verifyDirectoryEqualityHome(){
+        String[] expected = {"true", "home", "0", "root", "3"};
+        // Get the `home` directory.
+        Directory actual = (Directory)
+                fs.getRootDirs().getFirst().getChildren().getLast();
+        assertArrayEquals(expected, dirToStringArray(actual));
+    }
+
+    @Test
+    public void verifyDirectoryEqualityCode(){
+        String[] expected = {"true", "code", "0", "home", "2"};
+        // Get the `code` directory.
+        Directory parent = (Directory) fs.getRootDirs().getFirst().getChildren().getLast();
+        Directory actual = (Directory) parent.getChildren().getFirst();
+        assertArrayEquals(expected, dirToStringArray(actual));
+    }
+
+    @Test
+    public void verifyDirectoryEqualityPics(){
+        String[] expected = {"true", "pics", "0", "home", "2"};
+        // Get the `pics` directory.
+        Directory parent = (Directory) fs.getRootDirs().getFirst().getChildren().getLast();
+        Directory actual = (Directory) parent.getChildren().get(1);
+        assertArrayEquals(expected, dirToStringArray(actual));
     }
 }

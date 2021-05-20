@@ -13,7 +13,6 @@ public class FileSystemTest {
     @BeforeAll
     public static void setUpFS(){
         fs = TestFixtureInitializer.createFS();
-        System.out.println("made FS");
     }
 
     @Test

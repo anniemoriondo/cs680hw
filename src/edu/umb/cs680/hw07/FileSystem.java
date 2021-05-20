@@ -24,7 +24,4 @@ public class FileSystem {
         this.rootDirs.add(root);
     }
 
-    public static void main(String[] args){
-        System.out.println("Is this thing on?");
-    }
 }
