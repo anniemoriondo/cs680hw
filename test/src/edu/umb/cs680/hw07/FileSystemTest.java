@@ -8,11 +8,12 @@ import org.junit.jupiter.api.AfterAll;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FileSystemTest {
-    private static FileSystem fs;
+    private static FileSystem fs;// = TestFixtureInitializer.createFS();
 
-    //@BeforeAll
+    @BeforeAll
     public static void setUpFS(){
-        fs = TestFixtureInitializer.createFS();
+       // fs = TestFixtureInitializer.createFS();
+        System.out.println("made FS");
     }
 
     @Test
