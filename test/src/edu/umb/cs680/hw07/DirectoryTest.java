@@ -31,13 +31,22 @@ public class DirectoryTest {
         return dirInfo;
     }
 
-    private String[] subDirNames(Directory d){
+    private String[] subdirList(Directory d){
         LinkedList<Directory> subDirs = d.getSubDirectories();
-        String[] subDirNames = new String[subDirs.size()];
+        String[] subdirNames = new String[subDirs.size()];
         for (int i = 0; i < subDirs.size(); i++){
-            subDirNames[i] = subDirs.get(i).getName();
+            subdirNames[i] = subDirs.get(i).getName();
         }
-        return subDirNames;
+        return subdirNames;
+    }
+
+    private String[] fileList(Directory d){
+        LinkedList<File> fileContents = d.getFiles();
+        String[] fileNames = new String[fileContents.size()];
+        for (int i = 0; i < fileContents.size(); i++){
+            fileNames[i] = fileContents.get(i).getName();
+        }
+        return fileNames;
     }
 
     @BeforeAll
@@ -109,30 +118,60 @@ public class DirectoryTest {
     @Test
     public void verifySubDirRoot(){
         String[] expected = {"applications", "home"};
-        assertArrayEquals(expected, subDirNames(root));
+        assertArrayEquals(expected, subdirList(root));
     }
 
     @Test
     public void verifySubDirApplications(){
         String[] expected = {};
-        assertArrayEquals(expected, subDirNames(applications));
+        assertArrayEquals(expected, subdirList(applications));
     }
 
     @Test
     public void verifySubDirHome(){
         String[] expected = {"code", "pics"};
-        assertArrayEquals(expected, subDirNames(home));
+        assertArrayEquals(expected, subdirList(home));
     }
 
     @Test
     public void verifySubDirCode(){
         String[] expected = {};
-        assertArrayEquals(expected, subDirNames(code));
+        assertArrayEquals(expected, subdirList(code));
     }
 
     @Test
     public void verifySubDirPics(){
         String[] expected = {};
-        assertArrayEquals(expected, subDirNames(pics));
+        assertArrayEquals(expected, subdirList(pics));
+    }
+
+    @Test
+    public void verifyFileContentRoot(){
+        String[] expected = {};
+        assertArrayEquals(expected, fileList(root));
+    }
+
+    @Test
+    public void verifyFileContentApplications(){
+        String[] expected = {"a"};
+        assertArrayEquals(expected, fileList(applications));
+    }
+
+    @Test
+    public void verifyFileContentHome(){
+        String[] expected = {"b"};
+        assertArrayEquals(expected, fileList(home));
+    }
+
+    @Test
+    public void verifyFileContentCode(){
+        String[] expected = {"c", "d"};
+        assertArrayEquals(expected, fileList(code));
+    }
+
+    @Test
+    public void verifyFileContentPics(){
+        String[] expected = {"e", "f"};
+        assertArrayEquals(expected, fileList(pics));
     }
 }
