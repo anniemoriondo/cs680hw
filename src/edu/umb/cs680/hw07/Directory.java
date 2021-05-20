@@ -50,8 +50,12 @@ public class Directory extends FSElement {
 
     public int getTotalSize(){
         int totalSize = 0;
-        for (File thisFile : this.getFiles()){
-            totalSize += thisFile.getSize();
+        for (FSElement thisChild : this.getChildren()){
+            if (thisChild.isDirectory()){
+                totalSize += ((Directory)thisChild).getTotalSize();
+            } else {
+                totalSize += thisChild.getSize();
+            }
         }
         return totalSize;
     }

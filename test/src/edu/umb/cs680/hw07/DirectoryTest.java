@@ -1,5 +1,7 @@
 package edu.umb.cs680.hw07;
 
+
+import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,6 +29,15 @@ public class DirectoryTest {
                 String.valueOf(d.countChildren())
         };
         return dirInfo;
+    }
+
+    private String[] subDirNames(Directory d){
+        LinkedList<Directory> subDirs = d.getSubDirectories();
+        String[] subDirNames = new String[subDirs.size()];
+        for (int i = 0; i < subDirs.size(); i++){
+            subDirNames[i] = subDirs.get(i).getName();
+        }
+        return subDirNames;
     }
 
     @BeforeAll
@@ -93,5 +104,35 @@ public class DirectoryTest {
     @Test
     public void verifyCountChildrenPics(){
         assertEquals(2, pics.countChildren());
+    }
+
+    @Test
+    public void verifySubDirRoot(){
+        String[] expected = {"applications", "home"};
+        assertArrayEquals(expected, subDirNames(root));
+    }
+
+    @Test
+    public void verifySubDirApplications(){
+        String[] expected = {};
+        assertArrayEquals(expected, subDirNames(applications));
+    }
+
+    @Test
+    public void verifySubDirHome(){
+        String[] expected = {"code", "pics"};
+        assertArrayEquals(expected, subDirNames(home));
+    }
+
+    @Test
+    public void verifySubDirCode(){
+        String[] expected = {};
+        assertArrayEquals(expected, subDirNames(code));
+    }
+
+    @Test
+    public void verifySubDirPics(){
+        String[] expected = {};
+        assertArrayEquals(expected, subDirNames(pics));
     }
 }
