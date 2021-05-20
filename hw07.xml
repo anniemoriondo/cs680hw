@@ -45,7 +45,7 @@
         <javac srcdir="${test.src}" destdir="${test.bin}"
                includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw07/*.java"/>
+            <include name="edu/umb/cs680/hw07/FileSystemTest.java"/>
         </javac>
     </target>
 

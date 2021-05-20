@@ -6,10 +6,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 
 public class FileTest {
-    FileSystem fs;
+    private static FileSystem fs;
 
     @BeforeAll
-    public void setUpFS(){
+    public static void setUpFS(){
         fs = TestFixtureInitializer.createFS();
     }
 }

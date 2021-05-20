@@ -27,4 +27,8 @@ public class TestFixtureInitializer {
 
         return fs;
     }
+
+    public static void main(String[] args){
+        System.out.println(createFS().getRootDirs().size());
+    }
 }
