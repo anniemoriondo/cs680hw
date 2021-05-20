@@ -38,4 +38,6 @@ public abstract class FSElement {
 
     public abstract boolean isDirectory();
 
+    public abstract boolean isLink();
+
 }

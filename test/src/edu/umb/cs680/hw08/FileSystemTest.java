@@ -6,7 +6,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FileSystemTest {
     private static FileSystem fs;
 

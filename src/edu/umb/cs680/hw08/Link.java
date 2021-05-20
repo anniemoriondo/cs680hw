@@ -13,20 +13,29 @@ public class Link extends FSElement {
         if (parent != null){ parent.appendChild(this); }
     }
 
-    public boolean isDirectory() {
-        return false;
-    }
+    public boolean isDirectory() { return false; }
+
+    public boolean isLink() { return true; }
+
+    public FSElement getTarget(){ return target; }
 
     // Info about target
     public String targetName(){ return target.getName(); }
 
-    public String targetLocation(){ return target.getParent().getName(); }
+    public String targetLocation(){
+        return target.getParent() != null ?
+            target.getParent().getName() : null;
+    }
 
     public int targetSize(){
-        return target.isDirectory() ? ((Directory)target).getTotalSize() : target.getSize();
+        // Returns target's total size if it's a directory; else return its size
+        return target.isDirectory() ?
+                ((Directory)target).getTotalSize() : target.getSize();
     }
 
     public boolean targetIsDirectory(){ return target.isDirectory(); }
+
+    public boolean targetIsLink(){return target.isLink();}
 
 
 }

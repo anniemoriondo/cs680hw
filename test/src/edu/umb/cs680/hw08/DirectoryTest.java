@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw07;
+package edu.umb.cs680.hw08;
 
 
 import java.util.LinkedList;
@@ -27,9 +27,9 @@ public class DirectoryTest {
 
         String[] dirInfo = {
                 String.valueOf(d.isDirectory()),
+                String.valueOf(d.isLink()),
                 d.getName(),
                 String.valueOf(d.getSize()),
-                //d.getCreationTime().toString(),
                 parentName,
                 String.valueOf(d.countChildren())
         };
@@ -64,6 +64,15 @@ public class DirectoryTest {
         return fileNames;
     }
 
+    private String[] linksList(Directory d){
+        LinkedList<Link> links = d.getLinks();
+        String[] linkNames = new String[links.size()];
+        for (int i = 0; i < links.size(); i++){
+            linkNames[i] = links.get(i).getName();
+        }
+        return linkNames;
+    }
+
     @BeforeAll
     public static void setUpFS(){
         fs = TestFixtureInitializer.createFS();
@@ -76,59 +85,35 @@ public class DirectoryTest {
 
     @Test
     public void verifyDirectoryEqualityRoot(){
-        String[] expected = {"true", "root", "0", "null", "2"};
+        String[] expected = {"true", "false", "root", "0", "null", "2"};
         assertArrayEquals(expected, dirToStringArray(root));
 
     }
 
     @Test
     public void verifyDirectoryEqualityApplications(){
-        String[] expected = {"true", "applications", "0", "root", "1"};
+        String[] expected = {"true", "false", "applications", "0", "root", "1"};
         assertArrayEquals(expected, dirToStringArray(applications));
     }
 
     @Test
     public void verifyDirectoryEqualityHome(){
-        String[] expected = {"true", "home", "0", "root", "3"};
+        String[] expected = {"true", "false", "home", "0", "root", "4"};
         assertArrayEquals(expected, dirToStringArray(home));
     }
 
     @Test
     public void verifyDirectoryEqualityCode(){
-        String[] expected = {"true", "code", "0", "home", "2"};
+        String[] expected = {"true", "false", "code", "0", "home", "3"};
         assertArrayEquals(expected, dirToStringArray(code));
     }
 
     @Test
     public void verifyDirectoryEqualityPics(){
-        String[] expected = {"true", "pics", "0", "home", "2"};
+        String[] expected = {"true", "false", "pics", "0", "home", "2"};
         assertArrayEquals(expected, dirToStringArray(pics));
     }
 
-    @Test
-    public void verifyCountChildrenRoot(){
-        assertEquals(2, root.countChildren());
-    }
-
-    @Test
-    public void verifyCountChildrenApplications(){
-        assertEquals(1, applications.countChildren());
-    }
-
-    @Test
-    public void verifyCountChildrenHome(){
-        assertEquals(3, home.countChildren());
-    }
-
-    @Test
-    public void verifyCountChildrenCode(){
-        assertEquals(2, code.countChildren());
-    }
-
-    @Test
-    public void verifyCountChildrenPics(){
-        assertEquals(2, pics.countChildren());
-    }
 
     @Test
     public void verifySubDirRoot(){
@@ -218,6 +203,36 @@ public class DirectoryTest {
     public void verifyTotalSizePics(){
         int expected = 1100;
         assertEquals(expected, pics.getTotalSize());
+    }
+
+    @Test
+    public void verifyLinkContentRoot(){
+        String[] expected = {};
+        assertArrayEquals(expected, linksList(root));
+    }
+
+    @Test
+    public void verifyLinkContentApplications(){
+        String[] expected = {};
+        assertArrayEquals(expected, linksList(applications));
+    }
+
+    @Test
+    public void verifyLinkContentHome(){
+        String[] expected = {"x"};
+        assertArrayEquals(expected, linksList(home));
+    }
+
+    @Test
+    public void verifyLinkContentCode(){
+        String[] expected = {"y"};
+        assertArrayEquals(expected, linksList(code));
+    }
+
+    @Test
+    public void verifyLinkContentPics(){
+        String[] expected = {};
+        assertArrayEquals(expected, linksList(pics));
     }
 
 }

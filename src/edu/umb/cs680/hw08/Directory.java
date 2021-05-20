@@ -24,9 +24,9 @@ public class Directory extends FSElement {
         return this.children.size();
     }
 
-    public boolean isDirectory() {
-        return true;
-    }
+    public boolean isDirectory() { return true; }
+
+    public boolean isLink() { return false; }
 
     /**
      * Gets all directories immediately inside this Directory
@@ -49,11 +49,25 @@ public class Directory extends FSElement {
     public LinkedList<File> getFiles(){
         LinkedList<File> files = new LinkedList<>();
         for (FSElement thisElem : this.children){
-            if (! thisElem.isDirectory()){
+            if (!thisElem.isDirectory() && !thisElem.isLink()){
                 files.add((File) thisElem);
             }
         }
         return files;
+    }
+
+    /**
+     * Gets all links immediately inside this Directory
+     * @return LinkedList of all children which are Links
+     */
+    public LinkedList<Link> getLinks(){
+        LinkedList<Link> links = new LinkedList<>();
+        for (FSElement thisElem : this.children){
+            if (thisElem.isLink()){
+                links.add((Link) thisElem);
+            }
+        }
+        return links;
     }
 
     /**
@@ -75,5 +89,6 @@ public class Directory extends FSElement {
     public static void main(String[] args){
         Directory myDir = new Directory(null, "Annie", LocalDateTime.now());
         System.out.println(myDir.getName());
+        System.out.println(myDir.isLink());
     }
 }

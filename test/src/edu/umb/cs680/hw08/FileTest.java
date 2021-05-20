@@ -19,6 +19,7 @@ public class FileTest {
                 "null" : f.getParent().getName();
 
         String[] fileInfo = {String.valueOf(f.isDirectory()),
+                            String.valueOf(f.isLink()),
                             f.getName(),
                             String.valueOf(f.getSize()),
                             parentName};
@@ -45,37 +46,37 @@ public class FileTest {
 
     @Test
     public void verifyFileEqualityA(){
-        String[] expected = {"false", "a", "100", "applications"};
+        String[] expected = {"false", "false", "a", "100", "applications"};
         assertArrayEquals(expected, fileToStringArray(a));
     }
 
     @Test
     public void verifyFileEqualityB(){
-        String[] expected = {"false", "b", "200", "home"};
+        String[] expected = {"false", "false", "b", "200", "home"};
         assertArrayEquals(expected, fileToStringArray(b));
     }
 
     @Test
     public void verifyFileEqualityC(){
-        String[] expected = {"false", "c", "300", "code"};
+        String[] expected = {"false", "false", "c", "300", "code"};
         assertArrayEquals(expected, fileToStringArray(c));
     }
 
     @Test
     public void verifyFileEqualityD(){
-        String[] expected = {"false", "d", "400", "code"};
+        String[] expected = {"false", "false", "d", "400", "code"};
         assertArrayEquals(expected, fileToStringArray(d));
     }
 
     @Test
     public void verifyFileEqualityE(){
-        String[] expected = {"false", "e", "500", "pics"};
+        String[] expected = {"false", "false", "e", "500", "pics"};
         assertArrayEquals(expected, fileToStringArray(e));
     }
 
     @Test
     public void verifyFileEqualityF(){
-        String[] expected = {"false", "f", "600", "pics"};
+        String[] expected = {"false", "false", "f", "600", "pics"};
         assertArrayEquals(expected, fileToStringArray(f));
     }
 
