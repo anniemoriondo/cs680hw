@@ -71,13 +71,27 @@ public class DirectoryTest {
     }
 
     @Test
-    public void verifyCountChildrenRoot(){}
+    public void verifyCountChildrenRoot(){
+        assertEquals(2, root.countChildren());
+    }
 
-    public void verifyCountChildrenApplications(){}
+    @Test
+    public void verifyCountChildrenApplications(){
+        assertEquals(1, applications.countChildren());
+    }
 
-    public void verifyCountChildrenHome(){}
+    @Test
+    public void verifyCountChildrenHome(){
+        assertEquals(3, home.countChildren());
+    }
 
-    public void verifyCountChildrenCode(){}
+    @Test
+    public void verifyCountChildrenCode(){
+        assertEquals(2, code.countChildren());
+    }
 
-    public void verifyCountChildrenPics(){}
+    @Test
+    public void verifyCountChildrenPics(){
+        assertEquals(2, pics.countChildren());
+    }
 }
