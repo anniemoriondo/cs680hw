@@ -60,7 +60,7 @@
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
-        <java classname="edu/umb/cs680/hw07/FileSystem"
+        <java classname="edu/umb/cs680/hw07/Directory"
               classpathref="classpath" fork="true"/>
     </target>
 </project>

@@ -9,7 +9,7 @@ public class Directory extends FSElement {
     public Directory(Directory parent, String name, LocalDateTime creationTime){
         // File size of directory is always 0
         super(parent, name, 0, creationTime);
-        parent.appendChild(this);
+        if (parent != null){ parent.appendChild(this); }
     }
 
     public LinkedList<FSElement> getChildren(){
@@ -54,5 +54,10 @@ public class Directory extends FSElement {
             totalSize += thisFile.getSize();
         }
         return totalSize;
+    }
+
+    public static void main(String[] args){
+        Directory myDir = new Directory(null, "Annie", LocalDateTime.now());
+        System.out.println(myDir.getName());
     }
 }
