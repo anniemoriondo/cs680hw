@@ -16,6 +16,11 @@ public class DirectoryTest {
     private static Directory code;
     private static Directory pics;
 
+    /**
+     * Represents a directory as a string array.
+     * @param d a directory
+     * @return an array with all the details of that directory as Strings
+     */
     private String[] dirToStringArray(Directory d){
         String parentName = d.getParent() == null ?
                 "null" : d.getParent().getName();
@@ -31,6 +36,11 @@ public class DirectoryTest {
         return dirInfo;
     }
 
+    /**
+     * Lists all subdirectories of a directory.
+     * @param d a directory
+     * @return An array of all subdirectory names as Strings
+     */
     private String[] subdirList(Directory d){
         LinkedList<Directory> subDirs = d.getSubDirectories();
         String[] subdirNames = new String[subDirs.size()];
@@ -40,6 +50,11 @@ public class DirectoryTest {
         return subdirNames;
     }
 
+    /**
+     * Lists all files directly inside a directory.
+     * @param d a directory
+     * @return An array of all child file names as Strings
+     */
     private String[] fileList(Directory d){
         LinkedList<File> fileContents = d.getFiles();
         String[] fileNames = new String[fileContents.size()];

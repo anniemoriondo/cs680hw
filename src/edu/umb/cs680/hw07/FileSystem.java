@@ -10,6 +10,7 @@ public class FileSystem {
     private FileSystem(){}
 
     public static FileSystem getFileSystem(){
+        // Singleton file system - get the instance if it doesn't already exist.
         if (instance == null){
             instance = new FileSystem();
         }

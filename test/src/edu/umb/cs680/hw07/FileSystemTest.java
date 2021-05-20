@@ -16,7 +16,12 @@ public class FileSystemTest {
     }
 
     @Test
-    public void verifyNumberRootDirs(){
-        assertEquals(fs.getRootDirs().size(), 1);
+    public void verifyRootDirNames(){
+        assertEquals("root", fs.getRootDirs().getFirst().getName());
+    }
+
+    @Test
+    public void verifyRootDirQuantity(){
+        assertEquals(1, fs.getRootDirs().size());
     }
 }

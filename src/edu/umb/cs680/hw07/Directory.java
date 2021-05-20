@@ -28,6 +28,10 @@ public class Directory extends FSElement {
         return true;
     }
 
+    /**
+     * Gets all directories immediately inside this Directory
+     * @return LinkedList of all children which are Directories
+     */
     public LinkedList<Directory> getSubDirectories(){
         LinkedList<Directory> subDirectories = new LinkedList<>();
         for (FSElement thisElem : this.children){
@@ -38,6 +42,10 @@ public class Directory extends FSElement {
         return subDirectories;
     }
 
+    /**
+     * Gets all files immediately inside this Directory
+     * @return LinkedList of all children which are Files
+     */
     public LinkedList<File> getFiles(){
         LinkedList<File> files = new LinkedList<>();
         for (FSElement thisElem : this.children){
@@ -48,6 +56,10 @@ public class Directory extends FSElement {
         return files;
     }
 
+    /**
+     * Recursively gets size of directory and all subdirectories/their files.
+     * @return int representing total directory size
+     */
     public int getTotalSize(){
         int totalSize = 0;
         for (FSElement thisChild : this.getChildren()){
