@@ -174,4 +174,35 @@ public class DirectoryTest {
         String[] expected = {"e", "f"};
         assertArrayEquals(expected, fileList(pics));
     }
+
+    @Test
+    public void verifyTotalSizeRoot(){
+        int expected = 2100;
+        assertEquals(expected, root.getTotalSize());
+    }
+
+    @Test
+    public void verifyTotalSizeApplications(){
+        int expected = 100;
+        assertEquals(expected, applications.getTotalSize());
+    }
+
+    @Test
+    public void verifyTotalSizeHome(){
+        int expected = 2000;
+        assertEquals(expected, home.getTotalSize());
+    }
+
+    @Test
+    public void verifyTotalSizeCode(){
+        int expected = 700;
+        assertEquals(expected, code.getTotalSize());
+    }
+
+    @Test
+    public void verifyTotalSizePics(){
+        int expected = 1100;
+        assertEquals(expected, pics.getTotalSize());
+    }
+
 }
