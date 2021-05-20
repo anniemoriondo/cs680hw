@@ -23,4 +23,8 @@ public class FileSystem {
     public void appendRootDir(Directory root){
         this.rootDirs.add(root);
     }
+
+    public static void main(String[] args){
+        System.out.println("Is this thing on?");
+    }
 }
