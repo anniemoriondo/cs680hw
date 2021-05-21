@@ -9,10 +9,14 @@ public abstract class FSElement {
     private String name;
     private int size;
     private LocalDateTime creationTime;
-    private Directory parent;
+    private FSElement parent;
 
-    public FSElement(Directory parent, String name, int size,
-                     LocalDateTime creationTime){
+    public FSElement(FSElement parent, String name, int size,
+                     LocalDateTime creationTime) throws Exception {
+        // Can't use a parent that is not a directory (file or link)
+        if(parent != null && !parent.isDirectory()){
+            throw new Exception("Parent must be a directory");
+        }
         this.parent = parent;
         this.name = name;
         this.size = size;
@@ -20,7 +24,7 @@ public abstract class FSElement {
     }
 
     // Getters
-    public Directory getParent(){ return this.parent; }
+    public FSElement getParent(){ return this.parent; }
 
     public String getName(){ return this.name; }
 
@@ -38,6 +42,7 @@ public abstract class FSElement {
 
     public void setSize(int newSize){ this.size = newSize;}
 
+    // Booleans - we need to know if this is a directory or a link
     public abstract boolean isDirectory();
 
     public abstract boolean isLink();
