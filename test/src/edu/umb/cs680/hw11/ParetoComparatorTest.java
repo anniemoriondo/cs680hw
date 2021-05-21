@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class PriceComparatorTest {
+public class ParetoComparatorTest {
 
     private static LinkedList<Car> cars;
 
@@ -18,12 +18,13 @@ public class PriceComparatorTest {
     }
 
     @Test
-    public void verifyPriceSort(){
-        String[] expected = { "Nissan Acura", "Toyota Prius", "Subaru Legacy",
-                "Toyota Corolla", "Ford Explorer", "Honda Civic"};
+    public void verifyParetoSort(){
+        String[] expected = { "Honda Civic", "Ford Explorer", "Toyota Corolla",
+                "Nissan Acura", "Toyota Prius", "Subaru Legacy"};
         String[] actual = new String[6];
-        // Sort the cars from most expensive (worst) to least expensive (best)
-        Collections.sort(cars, new PriceComparator());
+        // Sort the cars from best to worst by Pareto comparison
+        Car.computeDominationCounts(cars);
+        Collections.sort(cars, new ParetoComparator());
         // List the cars
         for (int i = 0; i < 6; i++){
             actual[i] = cars.get(i).getMakeAndModel();
