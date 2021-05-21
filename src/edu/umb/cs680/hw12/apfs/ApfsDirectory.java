@@ -26,7 +26,7 @@ public class ApfsDirectory extends ApfsElement {
 
     // getChildren with custom comparator
     public LinkedList<ApfsElement> getChildren(Comparator<ApfsElement> comparator){
-        LinkedList<ApfsElement> temp = new LinkedList<>(this.children);
+        LinkedList<ApfsElement> temp = new LinkedList<>(this.getChildren());
         Collections.sort(temp, comparator);
         return temp;
     }
@@ -49,7 +49,7 @@ public class ApfsDirectory extends ApfsElement {
      */
     public LinkedList<ApfsDirectory> getSubDirectories(){
         LinkedList<ApfsDirectory> subDirectories = new LinkedList<>();
-        for (ApfsElement thisElem : this.children){
+        for (ApfsElement thisElem : this.getChildren()){
             if (thisElem.isDirectory()){
                 subDirectories.add((ApfsDirectory) thisElem);
             }
@@ -75,7 +75,7 @@ public class ApfsDirectory extends ApfsElement {
      */
     public LinkedList<ApfsFile> getFiles(){
         LinkedList<ApfsFile> files = new LinkedList<>();
-        for (FSElement thisElem : this.children){
+        for (FSElement thisElem : this.getChildren()){
             if (!thisElem.isDirectory() && !thisElem.isLink()){
                 files.add((ApfsFile) thisElem);
             }
@@ -101,7 +101,7 @@ public class ApfsDirectory extends ApfsElement {
      */
     public LinkedList<ApfsLink> getLinks(){
         LinkedList<ApfsLink> links = new LinkedList<>();
-        for (FSElement thisElem : this.children){
+        for (FSElement thisElem : this.getChildren()){
             if (thisElem.isLink()){
                 links.add((ApfsLink) thisElem);
             }
