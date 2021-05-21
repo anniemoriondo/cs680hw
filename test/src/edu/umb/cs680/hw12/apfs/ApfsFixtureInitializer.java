@@ -40,11 +40,11 @@ public class ApfsFixtureInitializer {
                 createTime, ownerName, modifiedTime);
 
         ApfsLink w = new ApfsLink(home, "w", createTime, c,
-                ownerName, modifiedTime)
+                ownerName, modifiedTime);
         ApfsLink x = new ApfsLink(home, "x", createTime, applications,
                 ownerName, modifiedTime);
         ApfsLink z = new ApfsLink(code, "z", createTime, b,
-                ownerName, modifiedTime)
+                ownerName, modifiedTime);
         ApfsLink y = new ApfsLink(code, "y", createTime, a,
                 ownerName, modifiedTime);
 

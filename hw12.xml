@@ -63,7 +63,5 @@
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
-        <java classname="edu/umb/cs680/hw12/apfs/ApfsComparator"
-              classpathref="classpath" fork="true"/>
     </target>
 </project>

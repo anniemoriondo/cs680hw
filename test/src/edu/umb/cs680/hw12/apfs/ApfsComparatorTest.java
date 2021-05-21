@@ -29,76 +29,103 @@ public class ApfsComparatorTest {
         }
         return names;
     }
-    
+
+     //As above, but for directories
+    private String[] dirArray(LinkedList<ApfsDirectory> list){
+        String[] names = new String[list.size()];
+        for (int i = 0; i < list.size(); i++){
+            names[i] = list.get(i).getName();
+        }
+        return names;
+    }
+
+    // As above, but for files
+    private String[] fileArray(LinkedList<ApfsFile> list){
+        String[] names = new String[list.size()];
+        for (int i = 0; i < list.size(); i++){
+            names[i] = list.get(i).getName();
+        }
+        return names;
+    }
+
+    // As above, but for links
+    private String[] linkArray(LinkedList<ApfsLink> list){
+        String[] names = new String[list.size()];
+        for (int i = 0; i < list.size(); i++){
+            names[i] = list.get(i).getName();
+        }
+        return names;
+    }
+
     @BeforeAll
     public static void setUpFS(){
         apfs = ApfsFixtureInitializer.createAPFS();
         root = (ApfsDirectory) apfs.getRootDirs().get(0);
         applications = (ApfsDirectory) root.getChildren().get(0);
         home = (ApfsDirectory) root.getChildren().get(1);
-        code = (ApfsDirectory) home.getChildren().get(0);
-        pics = (ApfsDirectory) home.getChildren().get(1);
+        code = (ApfsDirectory) home.getChildren().get(1);
+        pics = (ApfsDirectory) home.getChildren().get(2);
     }
 
 
     @Test
     public void verifySubDirRootDefaultOrder(){
         String[] expected = {"applications", "home"};
-        assertArrayEquals(expected, elemArray(root.getSubDirectories()));
+        assertArrayEquals(expected, dirArray(root.getSubDirectories()));
     }
 
     @Test
     public void verifySubDirApplicationsDefaultOrder(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(applications.getSubDirectories()));
+        assertArrayEquals(expected, dirArray(applications.getSubDirectories()));
     }
 
     @Test
     public void verifySubDirHomeDefaultOrder(){
         String[] expected = {"code", "pics"};
-        assertArrayEquals(expected, elemArray(home.getSubDirectories()));
+        assertArrayEquals(expected, dirArray(home.getSubDirectories()));
     }
 
     @Test
     public void verifySubDirCodeDefaultOrder(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(code.getSubDirectories()));
+        assertArrayEquals(expected, dirArray(code.getSubDirectories()));
     }
 
     @Test
     public void verifySubDirPicsDefaultOrder(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(pics.getSubDirectories()));
+        assertArrayEquals(expected, dirArray(pics.getSubDirectories()));
     }
 
     @Test
     public void verifyFileContentRootDefaultOrder(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(root.getFiles()));
+        assertArrayEquals(expected, fileArray(root.getFiles()));
     }
 
     @Test
     public void verifyFileContentApplicationsDefaultOrder(){
         String[] expected = {"a"};
-        assertArrayEquals(expected, elemArray(applications.getFiles()));
+        assertArrayEquals(expected, fileArray(applications.getFiles()));
     }
 
     @Test
     public void verifyFileContentHomeDefaultOrder(){
         String[] expected = {"b"};
-        assertArrayEquals(expected, elemArray(home.getFiles()));
+        assertArrayEquals(expected, fileArray(home.getFiles()));
     }
 
     @Test
     public void verifyFileContentCodeDefaultOrder(){
         String[] expected = {"c", "d"};
-        assertArrayEquals(expected, elemArray(code.getFiles()));
+        assertArrayEquals(expected, fileArray(code.getFiles()));
     }
 
     @Test
     public void verifyFileContentPicsDefaultOrder(){
         String[] expected = {"e", "f"};
-        assertArrayEquals(expected, elemArray(pics.getFiles()));
+        assertArrayEquals(expected, fileArray(pics.getFiles()));
     }
 
     @Test
@@ -134,31 +161,31 @@ public class ApfsComparatorTest {
     @Test
     public void verifyLinkContentRootDefaultOrder(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(root.getLinks()));
+        assertArrayEquals(expected, linkArray(root.getLinks()));
     }
 
     @Test
     public void verifyLinkContentApplicationsDefaultOrder(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(applications.getLinks()));
+        assertArrayEquals(expected, linkArray(applications.getLinks()));
     }
 
     @Test
     public void verifyLinkContentHomeDefaultOrder(){
         String[] expected = {"w", "x"};
-        assertArrayEquals(expected, elemArray(home.getLinks()));
+        assertArrayEquals(expected, linkArray(home.getLinks()));
     }
 
     @Test
     public void verifyLinkContentCodeDefaultOrder(){
         String[] expected = {"y", "z"};
-        assertArrayEquals(expected, elemArray(code.getLinks()));
+        assertArrayEquals(expected, linkArray(code.getLinks()));
     }
 
     @Test
     public void verifyLinkContentPics(){
         String[] expected = {};
-        assertArrayEquals(expected, elemArray(pics.getLinks()));
+        assertArrayEquals(expected, linkArray(pics.getLinks()));
     }
 
 }
