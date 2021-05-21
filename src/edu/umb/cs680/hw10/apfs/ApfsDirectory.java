@@ -90,6 +90,16 @@ public class ApfsDirectory extends ApfsElement {
         return totalSize;
     }
 
+    // Accept a visitor
+    public void accept(ApfsVisitor v){
+        System.out.println("Visiting " + this.getName());
+        v.visit(this);
+        System.out.println("Visited " + this.getName());
+        for (ApfsElement e : this.children){
+            e.accept(v);
+        }
+    }
+
     public static void main(String[] args){
         ApfsDirectory myDir = new ApfsDirectory(null, "My Directory",
                 LocalDateTime.now(), "Annie", LocalDateTime.now());
@@ -97,11 +107,4 @@ public class ApfsDirectory extends ApfsElement {
         System.out.println(myDir.isLink());
     }
 
-    // Accept a visitor
-    public void accept(ApfsVisitor v){
-        v.visit(this);
-        for (ApfsElement e: children){
-            e.accept(v);
-        }
-    }
 }
