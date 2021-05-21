@@ -32,7 +32,7 @@ public class ApfsLink extends ApfsElement {
     public int targetSize(){
         // Returns target's total size if it's a directory; else return its size
         return target.isDirectory() ?
-                ((ApfsDirectory)target).getSize() : target.getSize();
+                ((ApfsDirectory)target).getTotalSize() : target.getSize();
     }
 
     public boolean targetIsDirectory(){ return target.isDirectory(); }
