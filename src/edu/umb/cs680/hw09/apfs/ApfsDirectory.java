@@ -77,11 +77,11 @@ public class ApfsDirectory extends ApfsElement {
      * Recursively gets size of ApfsDirectory and all subdirectories/their files.
      * @return int representing total ApfsDirectory size
      */
-    public int getSize(){
+    public int getTotalSize(){
         int totalSize = 0;
         for (FSElement thisChild : this.getChildren()){
             if (thisChild.isDirectory()){
-                totalSize += ((ApfsDirectory) thisChild).getSize();
+                totalSize += ((ApfsDirectory) thisChild).getTotalSize();
             } else {
                 totalSize += thisChild.getSize();
             }
