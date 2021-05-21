@@ -26,6 +26,8 @@ public class Car {
         return this.model;
     }
 
+    public String getMakeAndModel() { return this.make + " " + this.model;}
+
     public int getMileage(){
         return this.mileage;
     }
@@ -40,7 +42,7 @@ public class Car {
 
     public int getDominationCount(){ return this.dominationCount;}
 
-    public int setDominationCount(int newCount){
+    public void setDominationCount(int newCount){
         this.dominationCount = newCount;
     }
 
