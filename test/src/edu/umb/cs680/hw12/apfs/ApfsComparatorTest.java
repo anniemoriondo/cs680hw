@@ -183,7 +183,7 @@ public class ApfsComparatorTest {
     }
 
     @Test
-    public void verifyLinkContentPics(){
+    public void verifyLinkContentPicsDefaultOrder(){
         String[] expected = {};
         assertArrayEquals(expected, linkArray(pics.getLinks()));
     }
