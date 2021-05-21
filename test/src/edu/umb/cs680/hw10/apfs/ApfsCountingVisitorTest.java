@@ -8,12 +8,13 @@ import org.junit.jupiter.api.AfterAll;
 
 public class ApfsCountingVisitorTest {
     private static APFS apfs;
-    private static ApfsCountingVisitor visitor = new ApfsCountingVisitor();
+    private static ApfsCountingVisitor visitor;
 
     @BeforeAll
     public static void setUpFS(){
         // Initialize file system fixture and count files with Visitor
         apfs = ApfsFixtureInitializer.createAPFS();
+        visitor = new ApfsCountingVisitor();
         ApfsElement root = (ApfsElement) apfs.getRootDirs().getFirst();
         root.accept(visitor);
 
