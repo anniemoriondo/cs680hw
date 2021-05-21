@@ -3,6 +3,8 @@ package edu.umb.cs680.hw12.apfs;
 import edu.umb.cs680.hw09.fs.FSElement;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 
@@ -17,7 +19,16 @@ public class ApfsDirectory extends ApfsElement {
     }
 
     public LinkedList<ApfsElement> getChildren(){
+        // Default ordering is alphabetical; we'll keep this ordering.
+        Collections.sort(this.children, new ApfsComparator());
         return this.children;
+    }
+
+    // getChildren with custom comparator
+    public LinkedList<ApfsElement> getChildren(Comparator<ApfsElement> comparator){
+        LinkedList<ApfsElement> temp = new LinkedList<>(this.children);
+        Collections.sort(temp, comparator);
+        return temp;
     }
 
     public void appendChild(ApfsElement newChild){
@@ -43,6 +54,18 @@ public class ApfsDirectory extends ApfsElement {
                 subDirectories.add((ApfsDirectory) thisElem);
             }
         }
+        Collections.sort(subDirectories, new ApfsComparator());
+        return subDirectories;
+    }
+
+    /**
+     * Gets all subdirectories and custom sorts them
+     * @param comparator a custom ApfsElement comparator
+     * @return a list of custom sorted subdirectories
+     */
+    public LinkedList<ApfsDirectory> getSubDirectories(Comparator<ApfsElement> comparator){
+        LinkedList<ApfsDirectory> subDirectories = this.getSubDirectories();
+        Collections.sort(subDirectories, comparator);
         return subDirectories;
     }
 
@@ -57,6 +80,18 @@ public class ApfsDirectory extends ApfsElement {
                 files.add((ApfsFile) thisElem);
             }
         }
+        Collections.sort(files, new ApfsComparator());
+        return files;
+    }
+
+    /**
+     * Gets all files immediately inside this ApfsDirectory, custom sorted
+     * @param comparator a custom ApfsElement comparator
+     * @return LinkedList of all children which are Files
+     */
+    public LinkedList<ApfsFile> getFiles(Comparator<ApfsElement> comparator){
+        LinkedList<ApfsFile> files = this.getFiles();
+        Collections.sort(files, comparator);
         return files;
     }
 
@@ -71,6 +106,13 @@ public class ApfsDirectory extends ApfsElement {
                 links.add((ApfsLink) thisElem);
             }
         }
+        Collections.sort(links, new ApfsComparator());
+        return links;
+    }
+
+    public LinkedList<ApfsLink> getLinks(Comparator<ApfsElement> comparator){
+        LinkedList<ApfsLink> links = this.getLinks();
+        Collections.sort(links, comparator);
         return links;
     }
 
