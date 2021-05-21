@@ -9,8 +9,8 @@ public class ApfsFixtureInitializer {
      * @return A sample APFS tree
      */
     public static APFS createAPFS(){
-        APFS apfs = ApfsFileSystem.getApfsFileSystem();
-        apfs.initApfsFileSystem();
+        APFS apfs = new APFS();
+        apfs.initFileSystem("Sample APFS", 250000);
 
         LocalDateTime createTime = LocalDateTime.now();
         String ownerName = "Annie";
@@ -20,7 +20,7 @@ public class ApfsFixtureInitializer {
         ApfsDirectory applications = new ApfsDirectory(root, "applications",
                     createTime, ownerName, modifiedTime);
         ApfsDirectory home = new ApfsDirectory(root, "home",
-                createTime, ownerName, modifiedTime;
+                createTime, ownerName, modifiedTime);
         ApfsDirectory code = new ApfsDirectory(home, "code",
                 createTime, ownerName, modifiedTime);
         ApfsDirectory pics = new ApfsDirectory(home, "pics",

@@ -6,13 +6,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 
-public class FileSystemTest {
+public class ApfsTest {
     private static APFS apfs;
 
     @BeforeAll
-    public static void setUpFS(){
-        apfs = TestFixtureInitializer.createAPFS();
-    }
+    public static void setUpFS(){ apfs = ApfsFixtureInitializer.createAPFS(); }
 
     @Test
     public void verifyRootDirNames(){
@@ -22,5 +20,11 @@ public class FileSystemTest {
     @Test
     public void verifyRootDirQuantity(){
         assertEquals(1, apfs.getRootDirs().size());
+    }
+
+    @Test
+    public void verifyAPFSIdentity(){
+        assertEquals("Sample APFS", apfs.getName());
+        assertEquals(250000, apfs.getCapacity());
     }
 }

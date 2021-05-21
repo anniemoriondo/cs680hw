@@ -39,13 +39,15 @@
         <!-- Classes under test -->
         <javac srcdir="${src}" destdir="${bin}" includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw09/*.java"/>
+            <include name="edu/umb/cs680/hw09/fs/*.java"/>
+            <include name="edu/umb/cs680/hw09/apfs/*.java"/>
         </javac>
         <!-- Test classes -->
         <javac srcdir="${test.src}" destdir="${test.bin}"
                includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw09/*Test.java"/>
+            <include name="edu/umb/cs680/hw09/fs/*Test.java"/>
+            <include name="edu/umb/cs680/hw09/apfs/*Test.java"/>
         </javac>
     </target>
 
@@ -55,12 +57,13 @@
             <classpath refid="classpath"/>
             <testclasses outputdir="${test}">
                 <fileset dir="${test.bin}">
-                    <include name="edu/umb/cs680/hw09/*Test.class"/>
+                    <include name="edu/umb/cs680/hw09/fs/*Test.class"/>
+                    <include name="edu/umb/cs680/hw09/apfs/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
-        <java classname="edu/umb/cs680/hw09/Directory"
+        <java classname="edu/umb/cs680/hw09/apfs/ApfsDirectory"
               classpathref="classpath" fork="true"/>
     </target>
 </project>
