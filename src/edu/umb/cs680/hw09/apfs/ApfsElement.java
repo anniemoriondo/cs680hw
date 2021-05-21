@@ -10,8 +10,11 @@ public class ApfsElement extends FSElement{
     private LocalDateTime modified;
 
     public ApfsElement (ApfsDirectory parent, String name, int size,
-                        LocalDateTime creationTime){
+                        LocalDateTime creationTime,
+                        String ownerName, LocalDateTime modified){
         super((FSElement) parent, name, size, creationTime);
+        this.ownerName = ownerName;
+        this.modified = modified;
     }
 
     // Getters specific to ApfsElement

@@ -6,8 +6,9 @@ import java.time.LocalDateTime;
 public class ApfsFile extends ApfsElement {
 
     public ApfsFile (ApfsDirectory parent, String name, int size,
-                 LocalDateTime creationTime){
-        super(parent, name, size, creationTime);
+                 LocalDateTime creationTime, String ownerName,
+                     LocalDateTime modified){
+        super(parent, name, size, creationTime, ownerName, modified);
         parent.appendChild(this);
     }
 

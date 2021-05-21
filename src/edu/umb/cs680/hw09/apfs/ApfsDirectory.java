@@ -8,9 +8,10 @@ import java.util.LinkedList;
 public class ApfsDirectory extends ApfsElement {
     private LinkedList<ApfsElement> children = new LinkedList<>();
 
-    public ApfsDirectory(ApfsDirectory parent, String name, LocalDateTime creationTime){
+    public ApfsDirectory(ApfsDirectory parent, String name, LocalDateTime creationTime,
+                         String ownerName, LocalDateTime modified){
         // File size of ApfsDirectory is always 0
-        super(parent, name, 0, creationTime);
+        super(parent, name, 0, creationTime, ownerName, modified);
         if (parent != null){ parent.appendChild(this); }
     }
 
@@ -89,7 +90,8 @@ public class ApfsDirectory extends ApfsElement {
     }
 
     public static void main(String[] args){
-        ApfsDirectory myDir = new ApfsDirectory(null, "Annie", LocalDateTime.now());
+        ApfsDirectory myDir = new ApfsDirectory(null, "My Directory",
+                LocalDateTime.now(), "Annie", LocalDateTime.now());
         System.out.println(myDir.getName());
         System.out.println(myDir.isLink());
     }

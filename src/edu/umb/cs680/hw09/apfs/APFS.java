@@ -9,7 +9,8 @@ public class APFS extends FileSystem {
 
 
     public FSElement createDefaultRoot() {
-        ApfsDirectory root = new ApfsDirectory(null, "root", LocalDateTime.now());
+        ApfsDirectory root = new ApfsDirectory(null, "root", LocalDateTime.now(),
+                "Admin", LocalDateTime.now());
         return (FSElement) root;
     }
 

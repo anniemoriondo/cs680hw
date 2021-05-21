@@ -8,9 +8,9 @@ public class ApfsLink extends ApfsElement {
     private ApfsElement target;
 
     public ApfsLink (ApfsDirectory parent, String name, LocalDateTime creationTime,
-                 ApfsElement target){
+                 ApfsElement target, String ownerName, LocalDateTime modified){
         // File size of link is always 0
-        super(parent, name, 0, creationTime);
+        super(parent, name, 0, creationTime, ownerName, modified);
         this.target = target;
         if (parent != null){ parent.appendChild(this); }
     }
