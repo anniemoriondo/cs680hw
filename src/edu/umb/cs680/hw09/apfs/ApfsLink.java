@@ -1,15 +1,14 @@
-package edu.umb.cs680.hw09;
+package edu.umb.cs680.hw09.apfs;
 
-import edu.umb.cs680.hw09.apfs.ApfsDirectory;
 import edu.umb.cs680.hw09.fs.FSElement;
 
 import java.time.LocalDateTime;
 
-public class Link extends FSElement {
-    private FSElement target;
+public class ApfsLink extends ApfsElement {
+    private ApfsElement target;
 
-    public Link (ApfsDirectory parent, String name, LocalDateTime creationTime,
-                 FSElement target){
+    public ApfsLink (ApfsDirectory parent, String name, LocalDateTime creationTime,
+                 ApfsElement target){
         // File size of link is always 0
         super(parent, name, 0, creationTime);
         this.target = target;
@@ -27,13 +26,13 @@ public class Link extends FSElement {
 
     public String targetLocation(){
         return target.getParent() != null ?
-            target.getParent().getName() : null;
+                target.getParent().getName() : null;
     }
 
     public int targetSize(){
         // Returns target's total size if it's a directory; else return its size
         return target.isDirectory() ?
-                ((ApfsDirectory)target).getTotalSize() : target.getSize();
+                ((ApfsDirectory)target).getSize() : target.getSize();
     }
 
     public boolean targetIsDirectory(){ return target.isDirectory(); }

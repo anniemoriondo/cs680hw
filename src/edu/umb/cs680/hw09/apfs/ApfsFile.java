@@ -1,13 +1,11 @@
-package edu.umb.cs680.hw09;
+package edu.umb.cs680.hw09.apfs;
 
-import edu.umb.cs680.hw09.apfs.ApfsDirectory;
-import edu.umb.cs680.hw09.fs.FSElement;
 
 import java.time.LocalDateTime;
 
-public class File extends FSElement {
+public class ApfsFile extends ApfsElement {
 
-    public File (ApfsDirectory parent, String name, int size,
+    public ApfsFile (ApfsDirectory parent, String name, int size,
                  LocalDateTime creationTime){
         super(parent, name, size, creationTime);
         parent.appendChild(this);

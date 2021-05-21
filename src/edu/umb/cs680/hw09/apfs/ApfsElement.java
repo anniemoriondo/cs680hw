@@ -1,18 +1,15 @@
 package edu.umb.cs680.hw09.apfs;
 
-import edu.umb.cs680.hw09.File;
-import edu.umb.cs680.hw09.Link;
 import edu.umb.cs680.hw09.fs.FSElement;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 
 public class ApfsElement extends FSElement{
 
     private String ownerName;
     private LocalDateTime modified;
 
-    public ApfsElement (ApfsElement parent, String name, int size,
+    public ApfsElement (ApfsDirectory parent, String name, int size,
                         LocalDateTime creationTime){
         super((FSElement) parent, name, size, creationTime);
     }
