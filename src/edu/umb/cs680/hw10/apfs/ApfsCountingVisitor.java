@@ -12,10 +12,7 @@ public class ApfsCountingVisitor implements ApfsVisitor {
     // Increment the appropriate counter for each element visited
     public void visit(ApfsLink link){ linkNum += 1; }
 
-    public void visit(ApfsDirectory dir){
-        dirNum += 1;
-        System.out.println("Visiting a directory!");
-    }
+    public void visit(ApfsDirectory dir){ dirNum += 1; }
 
     public void visit(ApfsFile file){ fileNum += 1; }
 
@@ -28,9 +25,8 @@ public class ApfsCountingVisitor implements ApfsVisitor {
         LocalDateTime now = LocalDateTime.now();
         ApfsDirectory dir1 = new ApfsDirectory(null, "dir1", now, "Annie", now);
         ApfsDirectory dir2 = new ApfsDirectory(dir1, "dir2", now, "Annie", now);
-        ApfsCountingVisitor counter = new ApfsCountingVisitor();
+        ApfsVisitor counter = new ApfsCountingVisitor();
         dir1.accept(counter);
-        System.out.println(counter.getDirNum());
     }
 
 }

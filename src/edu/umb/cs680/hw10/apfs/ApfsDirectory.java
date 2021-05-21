@@ -92,9 +92,7 @@ public class ApfsDirectory extends ApfsElement {
 
     // Accept a visitor
     public void accept(ApfsVisitor v){
-        System.out.println("Visiting " + this.getName());
         v.visit(this);
-        System.out.println("Visited " + this.getName());
         for (ApfsElement e : this.children){
             e.accept(v);
         }

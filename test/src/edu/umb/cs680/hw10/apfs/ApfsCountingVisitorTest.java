@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 
 public class ApfsCountingVisitorTest {
     private static APFS apfs;
-    private static ApfsCountingVisitor visitor;
+    private static ApfsCountingVisitor visitor = new ApfsCountingVisitor();
 
     @BeforeAll
     public static void setUpFS(){
