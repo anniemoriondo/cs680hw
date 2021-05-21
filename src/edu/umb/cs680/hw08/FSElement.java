@@ -3,7 +3,7 @@ package edu.umb.cs680.hw08;
 import java.time.LocalDateTime;
 
 
-public abstract class FSElement {
+public class FSElement {
     private String name;
     private int size;
     private LocalDateTime creationTime;
@@ -36,8 +36,10 @@ public abstract class FSElement {
 
     public void setSize(int newSize){ this.size = newSize;}
 
-    public abstract boolean isDirectory();
+    // Overridden by directory subclasses
+    public boolean isDirectory(){return false;}
 
-    public abstract boolean isLink();
+    // Overidden by link subclasses
+    public boolean isLink(){return true;}
 
 }

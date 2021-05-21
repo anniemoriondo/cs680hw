@@ -1,16 +1,18 @@
-package edu.umb.cs680.hw09;
+package edu.umb.cs680.hw09.apfs;
 
+import edu.umb.cs680.hw09.File;
+import edu.umb.cs680.hw09.Link;
 import edu.umb.cs680.hw09.fs.FSElement;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-public class Directory extends FSElement {
+public class ApfsDirectory extends FSElement {
     private LinkedList<FSElement> children = new LinkedList<>();
 
-    public Directory(Directory parent, String name, LocalDateTime creationTime){
+    public ApfsDirectory(FSElement parent, String name, LocalDateTime creationTime) {            throws Exception {
         // File size of directory is always 0
-        super(parent, name, 0, creationTime);
+        super(parent, )
         if (parent != null){ parent.appendChild(this); }
     }
 
@@ -34,11 +36,11 @@ public class Directory extends FSElement {
      * Gets all directories immediately inside this Directory
      * @return LinkedList of all children which are Directories
      */
-    public LinkedList<Directory> getSubDirectories(){
-        LinkedList<Directory> subDirectories = new LinkedList<>();
+    public LinkedList<ApfsDirectory> getSubDirectories(){
+        LinkedList<ApfsDirectory> subDirectories = new LinkedList<>();
         for (FSElement thisElem : this.children){
             if (thisElem.isDirectory()){
-                subDirectories.add((Directory) thisElem);
+                subDirectories.add((ApfsDirectory) thisElem);
             }
         }
         return subDirectories;
@@ -80,7 +82,7 @@ public class Directory extends FSElement {
         int totalSize = 0;
         for (FSElement thisChild : this.getChildren()){
             if (thisChild.isDirectory()){
-                totalSize += ((Directory)thisChild).getTotalSize();
+                totalSize += ((ApfsDirectory)thisChild).getTotalSize();
             } else {
                 totalSize += thisChild.getSize();
             }
@@ -89,7 +91,7 @@ public class Directory extends FSElement {
     }
 
     public static void main(String[] args){
-        Directory myDir = new Directory(null, "Annie", LocalDateTime.now());
+        ApfsDirectory myDir = new ApfsDirectory(null, "Annie", LocalDateTime.now());
         System.out.println(myDir.getName());
         System.out.println(myDir.isLink());
     }

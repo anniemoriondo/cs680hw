@@ -1,22 +1,16 @@
 package edu.umb.cs680.hw09.fs;
 
-import edu.umb.cs680.hw09.Directory;
-
 import java.time.LocalDateTime;
 
 
-public abstract class FSElement {
+public class FSElement {
     private String name;
     private int size;
     private LocalDateTime creationTime;
     private FSElement parent;
 
     public FSElement(FSElement parent, String name, int size,
-                     LocalDateTime creationTime) throws Exception {
-        // Can't use a parent that is not a directory (file or link)
-        if(parent != null && !parent.isDirectory()){
-            throw new Exception("Parent must be a directory");
-        }
+                     LocalDateTime creationTime){
         this.parent = parent;
         this.name = name;
         this.size = size;
@@ -33,7 +27,7 @@ public abstract class FSElement {
     public int getSize(){ return this.size; }
 
     // Setters
-    public void setParent(Directory newParent){ this.parent = newParent; }
+    public void setParent(FSElement newParent){ this.parent = newParent; }
 
     public void setName(String newName){ this.name = newName; }
 
@@ -42,9 +36,10 @@ public abstract class FSElement {
 
     public void setSize(int newSize){ this.size = newSize;}
 
-    // Booleans - we need to know if this is a directory or a link
-    public abstract boolean isDirectory();
+    // Overridden by directory subclasses
+    public boolean isDirectory(){return false;}
 
-    public abstract boolean isLink();
+    // Overidden by link subclasses
+    public boolean isLink(){return true;}
 
 }

@@ -1,5 +1,6 @@
 package edu.umb.cs680.hw09;
 
+import edu.umb.cs680.hw09.apfs.ApfsDirectory;
 import edu.umb.cs680.hw09.fs.FSElement;
 
 import java.time.LocalDateTime;
@@ -7,7 +8,7 @@ import java.time.LocalDateTime;
 public class Link extends FSElement {
     private FSElement target;
 
-    public Link (Directory parent, String name, LocalDateTime creationTime,
+    public Link (ApfsDirectory parent, String name, LocalDateTime creationTime,
                  FSElement target){
         // File size of link is always 0
         super(parent, name, 0, creationTime);
@@ -32,7 +33,7 @@ public class Link extends FSElement {
     public int targetSize(){
         // Returns target's total size if it's a directory; else return its size
         return target.isDirectory() ?
-                ((Directory)target).getTotalSize() : target.getSize();
+                ((ApfsDirectory)target).getTotalSize() : target.getSize();
     }
 
     public boolean targetIsDirectory(){ return target.isDirectory(); }
