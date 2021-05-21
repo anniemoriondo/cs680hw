@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class CarFixtureInitializer {
 
-    public static LinkedList<Car> carExamples(){
+    public static LinkedList<Car> getCarExamples(){
         LinkedList<Car> cars = new LinkedList();
 
         // String make, String model, int mileage, int year, int price
