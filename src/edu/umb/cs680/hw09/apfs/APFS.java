@@ -12,4 +12,12 @@ public class APFS extends FileSystem {
         ApfsDirectory root = new ApfsDirectory(null, "root", LocalDateTime.now());
         return (FSElement) root;
     }
+
+    public void setRoot(FSElement newRoot){
+        if (this.getRootDirs().size() == 0){
+            super.setRoot(newRoot);
+        } else {
+            System.out.println("APFS can only have one root.");
+        }
+    }
 }

@@ -36,6 +36,8 @@ public abstract class FileSystem {
 
     public int getId(){return this.id;}
 
+    public LinkedList<FSElement> getRootDirs() { return rootDirs; }
+
     // Returns total size of all files in this file system.
     public int getUsed(){
         int total = 0;
