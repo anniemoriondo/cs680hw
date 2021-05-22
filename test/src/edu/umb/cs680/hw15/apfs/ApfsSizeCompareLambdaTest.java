@@ -67,6 +67,8 @@ public class ApfsSizeCompareLambdaTest {
         pics = (ApfsDirectory) home.getChildren().get(2);
     }
 
+    // Test calling getSubDirectories() by passing a lambda expression.
+    // Sorting by directory total size.
 
     @Test
     public void verifySubDirRootBySizeLambda(){
@@ -134,6 +136,8 @@ public class ApfsSizeCompareLambdaTest {
                 })));
     }
 
+    // Test calling getFiles() by passing a lambda expression. Sorting by size.
+
     @Test
     public void verifyFileContentRootBySizeLambda(){
         String[] expected = {};
@@ -199,6 +203,9 @@ public class ApfsSizeCompareLambdaTest {
                 })));
     }
 
+    // Test calling getChildren() by passing a lambda expression.
+    // Sorting by directory total size and file/link individual size.
+
     @Test
     public void verifyGetChildrenRootBySizeLambda(){
         String[] expected = {"applications", "home"};
@@ -263,6 +270,9 @@ public class ApfsSizeCompareLambdaTest {
                     return elem1size - elem2size;
                 })));
     }
+
+    // Test calling getLinks() by passing a lambda expression.
+    // Sorting by size, but all links have size 0 so default sort is used.
 
     @Test
     public void verifyLinkContentRootBySizeLambda(){

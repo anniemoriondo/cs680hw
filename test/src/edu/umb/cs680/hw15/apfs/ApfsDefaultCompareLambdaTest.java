@@ -68,6 +68,9 @@ public class ApfsDefaultCompareLambdaTest {
     }
 
 
+    // Test calling getSubDirectories(). Method uses a lambda expression now.
+    // Default sorting is alphabetical.
+
     @Test
     public void verifySubDirRootDefaultOrderLambda(){
         String[] expected = {"applications", "home"};
@@ -97,6 +100,9 @@ public class ApfsDefaultCompareLambdaTest {
         String[] expected = {};
         assertArrayEquals(expected, dirArray(pics.getSubDirectories()));
     }
+
+    // Test calling getFiles(). Method uses a lambda expression now.
+    // Default sorting is alphabetical.
 
     @Test
     public void verifyFileContentRootDefaultOrderLambda(){
@@ -128,6 +134,9 @@ public class ApfsDefaultCompareLambdaTest {
         assertArrayEquals(expected, fileArray(pics.getFiles()));
     }
 
+    // Test calling getChildren(). Method uses a lambda expression now.
+    // Default sorting is alphabetical.
+
     @Test
     public void verifyGetChildrenRootDefaultOrderLambda(){
         String[] expected = {"applications", "home"};
@@ -157,6 +166,9 @@ public class ApfsDefaultCompareLambdaTest {
         String[] expected = {"e", "f"};
         assertArrayEquals(expected, elemArray(pics.getChildren()));
     }
+
+    // Test calling getLinks(). Method uses a lambda expression now.
+    // Default sorting is alphabetical.
 
     @Test
     public void verifyLinkContentRootDefaultOrderLambda(){

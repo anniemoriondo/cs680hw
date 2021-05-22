@@ -67,6 +67,8 @@ public class ApfsReverseAlphaCompareLambdaTest {
         pics = (ApfsDirectory) home.getChildren().get(2);
     }
 
+    // Test calling getSubDirectories() by passing a lambda expression.
+    // Reverse alphabetical sorting.
 
     @Test
     public void verifySubDirRootReverseAlphaLambda(){
@@ -113,6 +115,9 @@ public class ApfsReverseAlphaCompareLambdaTest {
                 )));
     }
 
+    // Test calling getFiles() by passing a lambda expression.
+    // Reverse alphabetical sorting.
+
     @Test
     public void verifyFileContentRootReverseAlphaLambda(){
         String[] expected = {};
@@ -158,6 +163,9 @@ public class ApfsReverseAlphaCompareLambdaTest {
                 )));
     }
 
+    // Test calling getChildren() by passing a lambda expression.
+    // Reverse alphabetical sorting.
+
     @Test
     public void verifyGetChildrenRootReverseAlphaLambda(){
         String[] expected = {"home", "applications"};
@@ -202,6 +210,9 @@ public class ApfsReverseAlphaCompareLambdaTest {
                 {return elem2.getName().compareTo(elem1.getName());}
                 )));
     }
+
+    // Test calling getLinks() by passing a lambda expression.
+    // Reverse alphabetical sorting.
 
     @Test
     public void verifyLinkContentRootReverseAlphaLambda(){
