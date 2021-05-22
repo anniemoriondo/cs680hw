@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 
-public class ApfsReverseAlphaLambdaCompareLambdaTest {
+public class ApfsReverseAlphaCompareLambdaTest {
     // Instance variables from our test fixture.
     private static APFS apfs;
     private static ApfsDirectory root;
