@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 
 public class ObservablesTest {
-    private StockQuoteObservable stockQuotes;
-    private DJIAQuoteObservable djiaQuotes;
-    private PiechartObserver piechartObserver;
+    private static StockQuoteObservable stockQuotes;
+    private static DJIAQuoteObservable djiaQuotes;
+    private static PiechartObserver piechartObserver;
+    private static ThreeDObserver threeDObserver;
+    private static TableObserver tableObserver;
 
     @BeforeAll
     public static void setUp(){
@@ -18,16 +20,16 @@ public class ObservablesTest {
         djiaQuotes = new DJIAQuoteObservable();
         piechartObserver = new PiechartObserver(stockQuotes, djiaQuotes);
         threeDObserver = new ThreeDObserver(stockQuotes, djiaQuotes);
-        tableObserver = new TableObserer(stockQuotes, djiaQuotes);
+        tableObserver = new TableObserver(stockQuotes, djiaQuotes);
     }
 
     @Test
     public void verifyChangePriceGoogle(){
         float newPrice = 2219.56f;
         stockQuotes.changeQuote("GOOG", newPrice);
-        assertEqual(newPrice, piechartObserver.getQuote("GOOG"));
-        assertEqual(newPrice, tableObserver.getQuote("GOOG"));
-        assertEqual(newPrice, threeDObserver.getQuote("GOOG"));
+        assertEquals(newPrice, piechartObserver.getQuote("GOOG"));
+        assertEquals(newPrice, tableObserver.getQuote("GOOG"));
+        assertEquals(newPrice, threeDObserver.getQuote("GOOG"));
 
     }
 
@@ -35,9 +37,9 @@ public class ObservablesTest {
     public void verifyChangePricePfizer(){
         float newPrice = 50.34f;
         stockQuotes.changeQuote("PFE", newPrice);
-        assertEqual(newPrice, piechartObserver.getQuote("PFE"));
-        assertEqual(newPrice, tableObserver.getQuote("PFE"));
-        assertEqual(newPrice, threeDObserver.getQuote("PFE"));
+        assertEquals(newPrice, piechartObserver.getQuote("PFE"));
+        assertEquals(newPrice, tableObserver.getQuote("PFE"));
+        assertEquals(newPrice, threeDObserver.getQuote("PFE"));
     }
 
     @Test
@@ -47,13 +49,13 @@ public class ObservablesTest {
         stockQuotes.changeQuote("AAPL", newApplePrice);
         stockQuotes.changeQuote("DAL", newDeltaPrice);
 
-        assertEqual(newApplePrice, piechartObserver.getQuote("AAPL"));
-        assertEqual(newApplePrice, tableObserver.getQuote("AAPL"));
-        assertEqual(newApplePrice, threeDObserver.getQuote("AAPL"));
+        assertEquals(newApplePrice, piechartObserver.getQuote("AAPL"));
+        assertEquals(newApplePrice, tableObserver.getQuote("AAPL"));
+        assertEquals(newApplePrice, threeDObserver.getQuote("AAPL"));
 
-        assertEqual(newDeltaPrice, piechartObserver.getQuote("DAL"));
-        assertEqual(newDeltaPrice, tableObserver.getQuote("DAL"));
-        assertEqual(newDeltaPrice, threeDObserver.getQuote("DAL"));
+        assertEquals(newDeltaPrice, piechartObserver.getQuote("DAL"));
+        assertEquals(newDeltaPrice, tableObserver.getQuote("DAL"));
+        assertEquals(newDeltaPrice, threeDObserver.getQuote("DAL"));
 
     }
 
@@ -62,9 +64,9 @@ public class ObservablesTest {
         float newPrice = 34002.09f;
         djiaQuotes.changeQuote(newPrice);
 
-        assertEqual(newPrice, piechartObserver.getDjiaQuote();
-        assertEqual(newPrice, tableObserver.getDjiaQuote();
-        assertEqual(newPrice, threeDObserver.getDjiaQuote();
+        assertEquals(newPrice, piechartObserver.getDjiaQuote());
+        assertEquals(newPrice, tableObserver.getDjiaQuote());
+        assertEquals(newPrice, threeDObserver.getDjiaQuote());
     }
 
     @Test
@@ -74,12 +76,12 @@ public class ObservablesTest {
         stockQuotes.changeQuote("GOOG", newGooglePrice);
         djiaQuotes.changeQuote(newDJIAPrice);
 
-        assertEqual(newGooglePrice, piechartObserver.getQuote("GOOG"));
-        assertEqual(newGooglePrice, tableObserver.getQuote("GOOG"));
-        assertEqual(newGooglePrice, threeDObserver.getQuote("GOOG"));
+        assertEquals(newGooglePrice, piechartObserver.getQuote("GOOG"));
+        assertEquals(newGooglePrice, tableObserver.getQuote("GOOG"));
+        assertEquals(newGooglePrice, threeDObserver.getQuote("GOOG"));
 
-        assertEqual(newDJIAPrice, piechartObserver.getDjiaQuote();
-        assertEqual(newDJIAPrice, tableObserver.getDjiaQuote();
-        assertEqual(newDJIAPrice, threeDObserver.getDjiaQuote();
+        assertEquals(newDJIAPrice, piechartObserver.getDjiaQuote());
+        assertEquals(newDJIAPrice, tableObserver.getDjiaQuote());
+        assertEquals(newDJIAPrice, threeDObserver.getDjiaQuote());
     }
 }
