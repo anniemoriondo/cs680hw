@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw11;
+package edu.umb.cs680.hw14;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class PriceComparatorTest {
+public class YearComparatorLambdaTest {
 
     private static LinkedList<Car> cars;
 
@@ -18,12 +18,14 @@ public class PriceComparatorTest {
     }
 
     @Test
-    public void verifyPriceSort(){
-        String[] expected = { "Nissan Acura", "Toyota Prius", "Subaru Legacy",
-                "Toyota Corolla", "Ford Explorer", "Honda Civic"};
+    public void verifyYearSortLambda(){
+        String[] expected = {"Ford Explorer", "Subaru Legacy", "Toyota Corolla",
+                "Toyota Prius", "Nissan Acura", "Honda Civic"};
         String[] actual = new String[6];
-        // Sort the cars from most expensive (worst) to least expensive (best)
-        Collections.sort(cars, new PriceComparator());
+        // Sort the cars from oldest (worst) to newest (best)
+        // using a lambda expression
+        Collections.sort(cars, (Car car1, Car car2) ->
+            {return car1.getYear() - car2.getYear();});
         // List the cars
         for (int i = 0; i < 6; i++){
             actual[i] = cars.get(i).getMakeAndModel();

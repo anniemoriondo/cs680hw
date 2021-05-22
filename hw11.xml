@@ -26,6 +26,9 @@
 
     <!-- Start with all-new binaries -->
     <target name="init">
+        <!-- Make these directories if they don't already exist-->
+        <mkdir dir="${bin}/edu/umb/cs680/hw11"/>
+        <mkdir dir="${test.bin}/edu/umb/cs680/hw11"/>
         <delete>
             <fileset dir="${bin}/edu/umb/cs680/hw11" includes="**/*"/>
             <fileset dir="${test.bin}/edu/umb/cs680/hw11" includes="**/*"/>
