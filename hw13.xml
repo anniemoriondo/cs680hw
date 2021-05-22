@@ -43,12 +43,14 @@
         <javac srcdir="${src}" destdir="${bin}" includeantruntime="no">
             <classpath refid="classpath"/>
             <include name="edu/umb/cs680/hw13/observable/*.java"/>
+            <include name="edu/umb/cs680/hw13/multicast/*.java"/>
         </javac>
         <!-- Test classes -->
         <javac srcdir="${test.src}" destdir="${test.bin}"
                includeantruntime="no">
             <classpath refid="classpath"/>
             <include name="edu/umb/cs680/hw13/observable/*Test.java"/>
+            <include name="edu/umb/cs680/hw13/multicast/*Test.java"/>
         </javac>
     </target>
 
@@ -59,10 +61,10 @@
             <testclasses outputdir="${test}">
                 <fileset dir="${test.bin}">
                     <include name="edu/umb/cs680/hw13/observable/*Test.class"/>
+                    <include name="edu/umb/cs680/hw13/multicast/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
-
     </target>
 </project>
