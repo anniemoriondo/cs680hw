@@ -1,4 +1,4 @@
-package edu.umb.cs680.hw13;
+package edu.umb.cs680.hw13.observable;
 
 public class DJIAEvent {
     private float quote;

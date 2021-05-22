@@ -1,15 +1,15 @@
-package edu.umb.cs680.hw13;
+package edu.umb.cs680.hw13.observable;
 
 import java.util.HashMap;
-import java.util.Observable;
 import java.util.Observer;
+import java.util.Observable;
 
-public class TableObserver implements Observer{
+public class PiechartObserver implements Observer{
 
     private HashMap<String, Float> stockQuotes = new HashMap<>();
     private float djiaQuote;
 
-    public TableObserver(StockQuoteObservable stocks, DJIAQuoteObservable djia){
+    public PiechartObserver(StockQuoteObservable stocks, DJIAQuoteObservable djia){
         this.stockQuotes = stocks.getAllQuotes();
         stocks.addObserver(this);
         this.djiaQuote = djia.getQuote();

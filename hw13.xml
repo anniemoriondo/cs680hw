@@ -42,13 +42,13 @@
         <!-- Classes under test -->
         <javac srcdir="${src}" destdir="${bin}" includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw13/*.java"/>
+            <include name="edu/umb/cs680/hw13/observable/*.java"/>
         </javac>
         <!-- Test classes -->
         <javac srcdir="${test.src}" destdir="${test.bin}"
                includeantruntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw13/*Test.java"/>
+            <include name="edu/umb/cs680/hw13/observable/*Test.java"/>
         </javac>
     </target>
 
@@ -58,12 +58,11 @@
             <classpath refid="classpath"/>
             <testclasses outputdir="${test}">
                 <fileset dir="${test.bin}">
-                    <include name="edu/umb/cs680/hw13/*Test.class"/>
+                    <include name="edu/umb/cs680/hw13/observable/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendsysout="true"/>
             </testclasses>
         </junitlauncher>
-        <java classname="edu/umb/cs680/hw13/StockQuoteObservable"
-              classpathref="classpath" fork="true"/>
+
     </target>
 </project>
